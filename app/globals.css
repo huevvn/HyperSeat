@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background {
+    background: rgb(64, 0, 0);
+    background: linear-gradient(
+        130deg,
+        rgba(64, 0, 0, 1) 0%,
+        rgba(17, 5, 14, 1) 50%,
+        rgba(0, 0, 32, 1) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+.landingBG {
+    background: rgb(48, 0, 0);
+    background: linear-gradient(
+        135deg,
+        rgba(48, 0, 0, 1) 0%,
+        rgba(0, 0, 48, 1) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.trend {
+    text-shadow: 0 0 10px rgba(255, 255, 58, 0.728);
+}
+
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loader {
+    width: 40px;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.loader:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    --c: #0000, #ffffff 1deg 120deg, #0000 121deg;
+    background: conic-gradient(from 0deg, var(--c)) top right,
+        conic-gradient(from 120deg, var(--c)) bottom,
+        conic-gradient(from 240deg, var(--c)) top left;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    animation: l25 2s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+
+@keyframes l25 {
+    33% {
+        inset: -8px;
+        transform: rotate(0deg);
+    }
+    66% {
+        inset: -8px;
+        transform: rotate(180deg);
+    }
+    100% {
+        inset: 0;
+        transform: rotate(180deg);
+    }
+}
