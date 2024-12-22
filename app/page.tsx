@@ -17,7 +17,7 @@ const LandingPage = () => {
             <Card className="bg-white w-full max-w-5xl text-center shadow-2xl flex flex-col md:flex-row">
                 <div className="md:w-1/2 p-5 md:p-10">
                     <CardHeader>
-                        <CardTitle className="text-black text-5xl md:text-7xl font-black pt-5">
+                        <CardTitle className="text-black text-5xl md:text-6xl font-black pt-5">
                             Welcome to{" "}
                             <span className="text-specialColor text-[#700000]">
                                 HyperSeat
@@ -28,19 +28,19 @@ const LandingPage = () => {
                         <CardDescription className="text-[#000000] font-semibold text-2xl md:text-4xl mb-10">
                             Experience the Hype, Own the Vibe
                         </CardDescription>
-                        <p className="text-xl md:text-3xl mb-10">
+                        <p className="text-xl md:text-2xl mb-10">
                             Join us to book your seat for top concerts and live
                             shows.
                         </p>
                         <div className="flex justify-center gap-4 md:gap-8 mb-10">
                             <a href="/signup">
-                                <Button className="bg-[#010722] text-yellow-200 rounded-full py-4 md:py-6 px-8 md:px-12 text-xl md:text-3xl hover:bg-[#010722] hover:text-white transition duration-300 ease-in-out transform">
-                                    <p className="my-10">Sign Up</p>
+                                <Button className="bg-[#620101] text-yellow-200 font-bold rounded-full py-6 md:py-8 px-8 md:px-12 text-2xl md:text-xl hover:bg-[#000000] hover:text-white transition duration-500 ease-in-out transform">
+                                    <p className="mx-3">Sign Up</p>
                                 </Button>
                             </a>
                             <a href="/login">
-                                <Button className="bg-yellow-200 text-black rounded-full py-4 md:py-6 px-8 md:px-12 text-xl md:text-3xl hover:bg-black hover:text-white transition duration-300 ease-out transform">
-                                    <p className="my-10">Log In</p>
+                                <Button className="bg-[#001b4d] text-yellow-200 font-bold rounded-full py-6 md:py-8 px-8 md:px-12 text-2xl md:text-xl hover:bg-black hover:text-white transition duration-500 ease-out transform">
+                                    <p className="mx-3">Log In</p>
                                 </Button>
                             </a>
                         </div>

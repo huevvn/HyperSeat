@@ -27,7 +27,8 @@ const Page = () => {
 
         const formData = new FormData(e.target as HTMLFormElement);
         const data = {
-            username: formData.get("fname"),
+            firstName: formData.get("fname"),
+            lastName: formData.get("lname"),
             password: formData.get("password"),
             email: formData.get("email"),
         };
@@ -49,6 +50,11 @@ const Page = () => {
 
             if (!res.ok) {
                 console.error("API Error:", res.status, res.statusText);
+                if (result.error === "Email already in use") {
+                    throw new Error(
+                        "This email is already in use. Please use a different email."
+                    );
+                }
                 throw new Error(result.error || "Unknown error");
             }
 
@@ -135,12 +141,12 @@ const Page = () => {
                         {error && <p className="text-red-500">{error}</p>}
                         <div className="flex">
                             <Button
-                                className="bg-[#010722] text-yellow-200 w-full rounded-full mt-1 mb-3 mr-3 py-5 hover:bg-black hover:text-white"
+                                className="bg-[#010722] text-yellow-200 w-full rounded-full mt-1 mb-3 mr-3 py-6 hover:bg-black hover:text-white"
                                 disabled={loading}
                             >
                                 {loading ? "Signing up..." : "Submit"}
                             </Button>
-                            <Button className="bg-yellow-300 text-black rounded-full mt-1 mb-3 ml-r py-5 hover:bg-black hover:text-white">
+                            <Button className="bg-yellow-300 text-black rounded-full mt-1 mb-3 ml-r py-6 hover:bg-black hover:text-white">
                                 Sign-up with Google <FaGoogle />
                             </Button>
                         </div>

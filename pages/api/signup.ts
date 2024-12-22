@@ -17,28 +17,44 @@ export default async function handler(
     res: NextApiResponse
 ) {
     if (req.method === "POST") {
-        const { username, password, email } = req.body;
+        const { firstName, lastName, password, email } = req.body;
 
         try {
+            // Check if the email already exists
+            const params = {
+                TableName: process.env.DYNAMODB_TABLE_NAME!,
+                IndexName: "EmailIndex-index",
+                KeyConditionExpression: "EmailIndex = :email",
+                ExpressionAttributeValues: {
+                    ":email": email,
+                },
+            };
+
+            const result = await dynamoDb.query(params).promise();
+
+            if (result.Items && result.Items.length > 0) {
+                return res.status(400).json({ error: "Email already in use" });
+            }
+
             const hashedPassword = await bcrypt.hash(password, saltRounds);
 
             // Create user object to be saved in DynamoDB
             const user = {
-                UserId: new Date().toISOString(),
-                username,
+                UserId: email,
+                fullName: `${firstName} ${lastName}`,
                 password: hashedPassword,
                 email,
                 createdAt: new Date().toISOString(),
                 EmailIndex: email,
             };
 
-            const params = {
-                TableName: process.env.DYNAMODB_TABLE_NAME,
+            const putParams = {
+                TableName: process.env.DYNAMODB_TABLE_NAME!,
                 Item: user,
             };
 
             // Save the user data in DynamoDB
-            await dynamoDb.put(params).promise();
+            await dynamoDb.put(putParams).promise();
             res.status(200).json({ message: "Signup successful", user });
         } catch (error) {
             console.error("Error saving user:", error);
