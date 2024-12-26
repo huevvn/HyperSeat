@@ -1,12 +1,18 @@
-// pages/api/create-item.js
-import DynamoDB from "../../lib/dynamodb";
+import { NextApiRequest, NextApiResponse } from "next";
+import AWS from "aws-sdk";
 
-export default async function handler(req, res) {
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const tableName = process.env.DYNAMODB_TABLE_NAME!;
+
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+) {
     if (req.method === "POST") {
         const { id, name, email } = req.body;
 
         const params = {
-            TableName: "YourTableName",
+            TableName: tableName,
             Item: {
                 id,
                 name,
@@ -16,7 +22,7 @@ export default async function handler(req, res) {
         };
 
         try {
-            await DynamoDB.put(params).promise();
+            await dynamoDb.put(params).promise();
             res.status(200).json({ message: "Item created successfully" });
         } catch (error) {
             console.error("Error creating item:", error);

@@ -4,8 +4,15 @@ import { Button } from "@/components/ui/button";
 import { BsEnvelopeOpenHeart } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const AuthButtons = () => {
+    const router = useRouter();
+
+    const handleProfileClick = () => {
+        router.push("/profile");
+    };
+
     return (
         <div className="absolute right-5 top-5 md:right-10 md:top-10 flex space-x-2 md:space-x-4 z-50">
             {/* Support */}
@@ -14,7 +21,10 @@ const AuthButtons = () => {
             </Button>
 
             {/* Profile */}
-            <Button className="bg-yellow-200 hover:bg-black text-black hover:text-yellow-200 rounded-full px-4 py-4 md:px-6 md:py-7 text-sm md:text-base duration-500">
+            <Button
+                className="bg-yellow-200 hover:bg-black text-black hover:text-yellow-200 rounded-full px-4 py-4 md:px-6 md:py-7 text-sm md:text-base duration-500"
+                onClick={handleProfileClick}
+            >
                 Profile <CgProfile />
             </Button>
         </div>

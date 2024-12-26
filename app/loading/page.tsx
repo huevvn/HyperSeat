@@ -9,7 +9,7 @@ const Loading = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             router.push("/aboutus"); // Redirect after 3-5 seconds
-        }, 3000); // Adjust the duration as needed (3000ms = 3 seconds)
+        }, 1000);
 
         return () => clearTimeout(timer);
     }, [router]);

@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.prof {
+    background: rgb(48, 0, 0);
+    background: linear-gradient(
+        130deg,
+        rgba(48, 0, 0, 1) 0%,
+        rgba(22, 0, 0, 1) 100%
+    );
+}
+
 .background {
     background: rgb(64, 0, 0);
     background: linear-gradient(
-        130deg,
+        135deg,
         rgba(64, 0, 0, 1) 0%,
         rgba(17, 5, 14, 1) 50%,
         rgba(0, 0, 32, 1) 100%

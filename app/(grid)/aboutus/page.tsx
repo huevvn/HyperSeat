@@ -28,7 +28,7 @@ const Page = () => {
                 <ul className="text-2xl mt-5">
                     <li className="font-medium">
                         <span className="font-bold">- Ezzeldin Salah:</span>{" "}
-                        UI/UX / Tracking Infrastructure Loads.
+                        UI/UX / Cloud Operations.
                     </li>
 
                     <li className="mt-5 font-medium">
@@ -38,12 +38,12 @@ const Page = () => {
 
                     <li className="mt-5 font-medium">
                         <span className="font-bold">- Abdallah Elrouby:</span>{" "}
-                        Front-End.
+                        Front-End / Responsiveness.
                     </li>
 
                     <li className="mt-5 font-medium">
-                        <span className="font-bold">- Ziad Gaber:</span> Nigga
-                        didn't give a fuck.
+                        <span className="font-bold">- Ziad Gaber: </span>
+                        Support & Documentation / Project Reviewer.
                     </li>
                 </ul>
             </section>

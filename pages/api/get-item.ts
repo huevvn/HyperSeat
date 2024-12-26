@@ -1,18 +1,23 @@
-import DynamoDB from "../../lib/dynamodb";
+import { NextApiRequest, NextApiResponse } from "next";
+import AWS from "aws-sdk";
 
-export default async function handler(req, res) {
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const tableName = process.env.DYNAMODB_TABLE_NAME!;
+
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+) {
     if (req.method === "GET") {
         const { id } = req.query;
 
         const params = {
-            TableName: "YourTableName",
-            Key: {
-                id,
-            },
+            TableName: tableName,
+            Key: { id },
         };
 
         try {
-            const data = await DynamoDB.get(params).promise();
+            const data = await dynamoDb.get(params).promise();
             res.status(200).json(data.Item);
         } catch (error) {
             console.error("Error getting item:", error);
@@ -22,7 +27,7 @@ export default async function handler(req, res) {
         const { id, name, email } = req.body;
 
         const params = {
-            TableName: "YourTableName",
+            TableName: tableName,
             Item: {
                 id,
                 name,
@@ -31,7 +36,7 @@ export default async function handler(req, res) {
         };
 
         try {
-            await DynamoDB.put(params).promise();
+            await dynamoDb.put(params).promise();
             res.status(201).json({ message: "Item created successfully" });
         } catch (error) {
             console.error("Error creating item:", error);
